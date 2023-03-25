@@ -11,8 +11,10 @@ function App() {
       .init({
         liffId: import.meta.env.VITE_LIFF_ID
       })
-      .then(() => {
-        setMessage("LIFF init succeeded.");
+      .then(async() => {
+        const profile=await liff.getProfile();
+        setMessage(`Hello, ${profile.displayName}!`);
+
       })
       .catch((e: Error) => {
         setMessage("LIFF init failed.");
