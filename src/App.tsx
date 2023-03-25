@@ -13,7 +13,8 @@ function App() {
       })
       .then(async() => {
         const profile=await liff.getProfile();
-        setMessage(`Hello, ${profile.displayName}!`);
+        setMessage(`Hello, ${profile.displayName}!,${profile.pictureUrl}!`);
+        
 
       })
       .catch((e: Error) => {
