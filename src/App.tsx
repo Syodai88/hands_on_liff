@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
 import "./App.css";
+import { Button } from "@mui/material";
 
 function App() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  
 
   useEffect(() => {
     liff
@@ -12,13 +14,10 @@ function App() {
         liffId: import.meta.env.VITE_LIFF_ID
       })
       .then(async() => {
-        const profile=await liff.getProfile();
-        setMessage(`Hello, ${profile.displayName}!,${profile.pictureUrl}!`);
+          const profile=await liff.getProfile();
+          setMessage(`Hello, ${profile.displayName}!,${profile.pictureUrl}!`);
+          
 
-
-        <a href={profile.pictureUrl}>
-          <button>画像</button>
-        </a>
 
       })
       .catch((e: Error) => {
@@ -31,18 +30,20 @@ function App() {
     <div className="App">
       <h1>create-liff-app</h1>
       {message && <p>{message}</p>}
+
       {error && (
         <p>
           <code>{error}</code>
         </p>
       )}
-      <a
+      
+      <Button
         href="https://developers.line.biz/ja/docs/liff/"
         target="_blank"
         rel="noreferrer"
       >
         LIFF Documentation
-      </a>
+      </Button>
     </div>
   );
 }
